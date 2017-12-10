@@ -1,0 +1,34 @@
+﻿@using Chapter5_Razor.Models
+@model Chapter5_Razor.Models.Product[]
+
+@{
+    ViewBag.Title = "DemoArray";
+}
+
+
+@if (Model.Length > 0) {
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product prod in Model)
+            {
+                <tr>
+                    <td>@prod.Name</td>
+                    <td>£@prod.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else {
+    <h2>No product data</h2>
+}

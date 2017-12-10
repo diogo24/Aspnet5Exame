@@ -28,5 +28,27 @@ namespace Chapter5_Razor.Controllers
         {
             return View(myProduct);
         }
+
+        public ViewResult DemoExpression() {
+
+            ViewBag.ProductCount  = 1;
+            ViewBag.ExpressShip   = true;
+            ViewBag.ApplyDiscount = false;
+            ViewBag.Supplies      = null;
+
+            return View(myProduct);
+        }
+
+        public ViewResult DemoArray()
+        {
+            Product[] array = {
+                new Product {Name = "Kayak", Price = 275M},
+                new Product {Name = "Lifejacket", Price = 48.95M},
+                new Product {Name = "Soccer ball", Price = 19.50M},
+                new Product {Name = "Corner flag", Price = 34.95M}
+            };
+
+            return View(array);
+        }
     }
 }
