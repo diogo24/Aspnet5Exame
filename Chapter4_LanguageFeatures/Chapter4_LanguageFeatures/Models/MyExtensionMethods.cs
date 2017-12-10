@@ -39,5 +39,15 @@ namespace Chapter4_LanguageFeatures.Models
             }
         }
 
+        public static IEnumerable<Product> Filter(this IEnumerable<Product> prodEnum, Func<Product, bool> selectorParam) {
+            foreach (var prod in prodEnum)
+            {
+                if (selectorParam(prod))
+                {
+                    yield return prod;
+                }
+            }
+        }
+
     }
 }
