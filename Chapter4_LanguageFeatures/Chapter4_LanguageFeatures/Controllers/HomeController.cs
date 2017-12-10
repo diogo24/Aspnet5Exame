@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -298,6 +299,18 @@ namespace Chapter4_LanguageFeatures.Controllers
             products[2] = new Product { Name = "Stadium", Price = 79500M };
 
             return View("Result", (object)String.Format("Sum: {0:c}", results));
+        }
+
+
+        public Task<long?> TaskAction() {
+            return MyAsyncMethods.GetPageLengthAsync();
+        }
+
+        public async Task<ViewResult> AsyncAction()
+        {
+            var contentLength = await  MyAsyncMethods.GetPageLengthAsync();
+
+            return View("Result", (object)String.Format("Page Length: {0}", contentLength));
         }
     }
 }
