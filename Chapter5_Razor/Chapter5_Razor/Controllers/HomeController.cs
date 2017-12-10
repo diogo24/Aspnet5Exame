@@ -23,5 +23,10 @@ namespace Chapter5_Razor.Controllers
         {
             return View(myProduct);
         }
+
+        public ViewResult NameAndPrice()
+        {
+            return View(myProduct);
+        }
     }
 }
