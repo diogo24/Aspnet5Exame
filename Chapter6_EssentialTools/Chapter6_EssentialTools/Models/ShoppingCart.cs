@@ -7,8 +7,8 @@ namespace Chapter6_EssentialTools.Models
 {
     public class ShoppingCart
     {
-        private LinqValueCalculator calc;
-        public ShoppingCart(LinqValueCalculator calcParam)
+        private IValueCalculator calc;
+        public ShoppingCart(IValueCalculator calcParam)
         {
             calc = calcParam;
         }
