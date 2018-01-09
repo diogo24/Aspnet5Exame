@@ -5,14 +5,22 @@
     ViewBag.Title = "Products";
 }
 
-@foreach (var prod in Model.Products) {
-    <div>
-        <h3>@prod.Name</h3>
-        @prod.Description
-        <h4>@prod.Price.ToString("c")</h4>
+@*@foreach (var prod in Model.Products)
+{
+    <div class="well">
+        <h3>
+            <strong>@prod.Name</strong>
+            <span class="pull-right label label-primary">@prod.Price.ToString("c")</span>
+        </h3>
+        <span class="lead"> @prod.Description</span>
     </div>
+}*@
+
+@foreach (var p in Model.Products)
+{
+    @Html.Partial("ProductSummary", p)
 }
 
-<div>
+<div class="btn-group pull-right">
     @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
 </div>
