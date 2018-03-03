@@ -43,6 +43,8 @@ namespace SportsStore.WebUI
 
             routes.MapRoute(null, "{controller}/{action}");
 
+            //routes.MapRoute(null, "{controller}/{action}/Page{page}"); - using full path
+
             //routes.MapRoute(
             //    name: null,
             //    url: "Page{page}",
