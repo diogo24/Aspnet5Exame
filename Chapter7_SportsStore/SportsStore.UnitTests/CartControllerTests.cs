@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace SportsStore.UnitTests
 {
     [TestClass]
-    public class CartControllerRests
+    public class CartControllerTests
     {
         [TestMethod]
         public void Can_Add_To_Cart()
@@ -34,8 +34,41 @@ namespace SportsStore.UnitTests
             target.AddToCart(cart, 1, null);
 
             // Assert
-            Assert.AreEqual(cart.Lines.Count(), 1);
-            Assert.AreEqual(cart.Lines.ToArray()[0].Product.ProductID, 1);
+            Assert.AreEqual(1, cart.Lines.Count());
+            Assert.AreEqual(1, cart.Lines.ToArray()[0].Product.ProductID);
+        }
+
+        [TestMethod]
+        public void Can_Remove_From_Cart()
+        {
+            // Arrange - create the mock repository            
+            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            Product p1 = new Product { ProductID = 1, Name = "P1" };
+            Product p2 = new Product { ProductID = 2, Name = "P2" };
+            Product p3 = new Product { ProductID = 3, Name = "P3" };
+            mock.Setup(p => p.Products).Returns(new Product[] {
+                p1,
+                p2,
+                p3
+            });
+
+            // Arrange - create a Cart            
+            Cart cart = new Cart();
+            cart.AddItem(p1, 1);
+            cart.AddItem(p2, 3);
+            cart.AddItem(p3, 5);
+            cart.AddItem(p2, 1);
+
+            // Arrange - create the controller            
+            CartController target = new CartController(mock.Object);
+
+            // Act
+            target.RemoveFromCart(cart, 2, null);
+
+            // Assert
+            Assert.AreEqual(0, cart.Lines.Where(c => c.Product == p2).Count());
+            Assert.AreEqual(2, cart.Lines.Count());
+
         }
 
         [TestMethod]

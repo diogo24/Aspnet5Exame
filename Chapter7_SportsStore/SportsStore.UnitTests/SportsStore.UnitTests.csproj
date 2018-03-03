@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="CartControllerRests.cs" />
+    <Compile Include="CartControllerTests.cs" />
     <Compile Include="CartTests.cs" />
     <Compile Include="NavControllerTests.cs" />
     <Compile Include="ProductControllerTests.cs" />
