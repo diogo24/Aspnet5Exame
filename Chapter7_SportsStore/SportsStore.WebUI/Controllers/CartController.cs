@@ -18,10 +18,10 @@ namespace SportsStore.WebUI.Controllers
             _productRepository = productsRepository;
         }
 
-        public ActionResult Index(string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
         {
             var model = new CartIndexViewModel() {
-                Cart = GetCart(),
+                Cart = cart,
                 ReturnUrl = returnUrl
             };
 
@@ -29,41 +29,42 @@ namespace SportsStore.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddToCart(int productId, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
         {
             var product = _productRepository.Products.FirstOrDefault(p => p.ProductID == productId);
 
             if (product != null)
             {
-                GetCart().AddItem(product, 1);
+                cart.AddItem(product, 1);
             }
 
             return RedirectToAction("Index", new { returnUrl });
         }
 
         [HttpPost]
-        public RedirectToRouteResult RemoveFromCart(int productId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int productId, string returnUrl)
         {
             var product = _productRepository.Products.FirstOrDefault(p => p.ProductID == productId);
 
             if (product != null)
             {
-                GetCart().RemoveLine(product);
+                cart.RemoveLine(product);
             }
 
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        private Cart GetCart()
-        {
-            var cart = (Cart)Session["Cart"];
-            if(cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
+        //private Cart GetCart()
+        //{
+        //    var cart = (Cart)Session["Cart"];
+        //    if (cart == null)
+        //    {
+        //        cart = new Cart();
+        //        Session["Cart"] = cart;
+        //    }
 
-            return cart;
-        }
+        //    return cart;
+        //}
+
     }
 }
