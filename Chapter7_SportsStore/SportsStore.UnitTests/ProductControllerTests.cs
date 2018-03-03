@@ -77,9 +77,7 @@ namespace SportsStore.UnitTests
             Assert.AreEqual(pageInfo.TotalItems, 5);
             Assert.AreEqual(pageInfo.TotalPages, 2);
         }
-
-
-
+        
         [TestMethod]
         public void Can_Generate_Page_Links()
         {
@@ -107,6 +105,7 @@ namespace SportsStore.UnitTests
                 + @"<a class=""btn btn-default"" href=""Page3"">3</a>",
                 result.ToString());
         }
+
         [TestMethod]
         public void Can_Filter_Products()
         {
@@ -131,6 +130,38 @@ namespace SportsStore.UnitTests
             Assert.AreEqual(result.Length, 2);
             Assert.IsTrue(result[0].Name == "P2" && result[0].Category == "Cat2");
             Assert.IsTrue(result[1].Name == "P4" && result[1].Category == "Cat2");
+        }
+
+        [TestMethod]
+        public void Generate_Category_Specific_Product_Count()
+        {
+            // Arrange
+            // - create the mock repository
+            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+                new Product {ProductID = 1, Name = "P1", Category = "Cat1"},
+                new Product {ProductID = 2, Name = "P2", Category = "Cat2"},
+                new Product {ProductID = 3, Name = "P3", Category = "Cat1"},
+                new Product {ProductID = 4, Name = "P4", Category = "Cat2"},
+                new Product {ProductID = 5, Name = "P5", Category = "Cat3"}
+            });
+
+            // Arrange - create a controller and make the page size 3 items
+            ProductController target = new ProductController(mock.Object);
+            target.PageSize = 3;
+
+            // Action - test the product counts for different categories    
+            int res1 = ((ProductsListViewModel)target.List("Cat1").Model).PagingInfo.TotalItems;
+            int res2 = ((ProductsListViewModel)target.List("Cat2").Model).PagingInfo.TotalItems;
+            int res3 = ((ProductsListViewModel)target.List("Cat3").Model).PagingInfo.TotalItems;
+            int resAll = ((ProductsListViewModel)target.List(null).Model).PagingInfo.TotalItems;
+
+            // Assert 
+            Assert.AreEqual(2, res1);
+            Assert.AreEqual(2, res2);
+            Assert.AreEqual(1, res3);
+            Assert.AreEqual(5, resAll);
+
         }
     }
 }

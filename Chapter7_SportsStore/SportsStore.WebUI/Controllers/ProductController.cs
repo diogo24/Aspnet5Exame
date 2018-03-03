@@ -1,4 +1,5 @@
 ﻿using SportsStore.Domain.Abstract;
+using SportsStore.Domain.Entities;
 using SportsStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,46 @@ namespace SportsStore.WebUI.Controllers
 {
     public class ProductController : Controller
     {
-        private IProductsRepository productsRepository;
+        private IProductsRepository _productsRepository;
         public int PageSize = 4;
 
         public ProductController(IProductsRepository productsRepositoryParam)
         {
-            productsRepository = productsRepositoryParam;
+            _productsRepository = productsRepositoryParam;
         }
+
+        //// GET: Product
+        //public ViewResult List(string category, int page = 1)
+        //{
+        //    ProductsListViewModel model = new ProductsListViewModel
+        //    {
+        //        Products = _productsRepository.Products
+        //        .Where(FilterProductsCategory(category))
+        //        .OrderBy(p => p.ProductID)
+        //        .Skip((page - 1) * PageSize)
+        //        .Take(PageSize),
+        //        PagingInfo = new PagingInfo
+        //        {
+        //            CurrentPage  = page,
+        //            ItemsPerPage = PageSize,
+        //            TotalItems   = _productsRepository.Products.Count(FilterProductsCategory(category))
+        //        },
+        //        CurrentCategory = category
+        //    };
+        //    return View(model);
+        //}
+
+        //private static Func<Product, bool> FilterProductsCategory(string category)
+        //{
+        //    return p => category == null || p.Category == category;
+        //}
 
         // GET: Product
         public ViewResult List(string category, int page = 1)
         {
             ProductsListViewModel model = new ProductsListViewModel
             {
-                Products = productsRepository.Products
-                .Where(FilterProductsCategory(category))
+                Products = GetProductsByCategory(category)
                 .OrderBy(p => p.ProductID)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
@@ -32,16 +58,18 @@ namespace SportsStore.WebUI.Controllers
                 {
                     CurrentPage  = page,
                     ItemsPerPage = PageSize,
-                    TotalItems   = productsRepository.Products.Count(FilterProductsCategory(category))
+                    TotalItems   = GetProductsByCategory(category).Count()
                 },
                 CurrentCategory = category
             };
             return View(model);
         }
 
-        private static Func<Domain.Entities.Product, bool> FilterProductsCategory(string category)
+        private IEnumerable<Product> GetProductsByCategory(string category)
         {
-            return p => category == null || p.Category == category;
+            return category == null ?
+                _productsRepository.Products :
+                _productsRepository.Products.Where(p => p.Category == category);
         }
     }
 }
