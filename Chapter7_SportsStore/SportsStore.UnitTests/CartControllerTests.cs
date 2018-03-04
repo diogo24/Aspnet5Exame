@@ -131,7 +131,7 @@ namespace SportsStore.UnitTests
             var result = target.Checkout(cart, shippingDetails);
 
             // Assert - check that the order hasn't been passed on to the processor 
-            orderMock.Verify(o => o.ProcessOrder(cart, shippingDetails), Times.Never);
+            orderMock.Verify(o => o.ProcessOrder(It.IsAny<Cart>(), It.IsAny<ShippingDetails>()), Times.Never);
 
             // Assert - check that the method is returning the default view    
             Assert.AreEqual("", result.ViewName);    
@@ -163,7 +163,7 @@ namespace SportsStore.UnitTests
             var result = target.Checkout(cart, shippingDetails);
 
             // Assert - check that the order hasn't been passed on to the processor 
-            orderMock.Verify(o => o.ProcessOrder(cart, shippingDetails), Times.Never);
+            orderMock.Verify(o => o.ProcessOrder(It.IsAny<Cart>(), It.IsAny<ShippingDetails>()), Times.Never);
 
             // Assert - check that the method is returning the default view    
             Assert.AreEqual("", result.ViewName);

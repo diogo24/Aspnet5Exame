@@ -76,6 +76,15 @@
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Migrations\201803030956258_InitialCreate.cs" />
+    <Compile Include="Migrations\201803030956258_InitialCreate.Designer.cs">
+      <DependentUpon>201803030956258_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803042018573_Product_Changes.cs" />
+    <Compile Include="Migrations\201803042018573_Product_Changes.Designer.cs">
+      <DependentUpon>201803042018573_Product_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +93,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Insert Products Data Script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803030956258_InitialCreate.resx">
+      <DependentUpon>201803030956258_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803042018573_Product_Changes.resx">
+      <DependentUpon>201803042018573_Product_Changes.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

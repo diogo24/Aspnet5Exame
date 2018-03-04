@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminControllerTests.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="CartControllerTests.cs" />
     <Compile Include="CartTests.cs" />
