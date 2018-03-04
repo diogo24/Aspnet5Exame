@@ -140,5 +140,52 @@ namespace SportsStore.UnitTests
             // Assert - check no message added to TempData
             Assert.IsNull(controller.TempData["message"]);
         }
+
+        [TestMethod]
+        public void Can_Delete_Valid_Products()
+        {
+            // Arrange - create the mock repository
+            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            var p2 = new Product { ProductID = 2, Name = "P2" };
+            var products = new Product[] {
+                 new Product {ProductID = 1, Name = "P1"},
+                p2,
+                 new Product {ProductID = 3, Name = "P3"}
+            };
+            mock.Setup(p => p.Products).Returns(products);
+            mock.Setup(p => p.DeleteProduct(2)).Returns(p2);
+
+            // Arrange - create controller
+            var controller = new AdminController(mock.Object);
+
+            // Act
+            var result = controller.Delete(2);
+
+            // Assert
+            mock.Verify(m => m.DeleteProduct(2), Times.Once);
+            Assert.AreEqual("P2 was deleted", controller.TempData["message"]);
+        }
+
+        [TestMethod]
+        public void Can_Delete_Valid_Products2()
+        {
+            // Arrange - create a Product
+            Product prod = new Product { ProductID = 2, Name = "Test" };
+            // Arrange - create the mock repository
+            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
+ new Product {ProductID = 1, Name = "P1"},
+ prod,
+ new Product {ProductID = 3, Name = "P3"},
+ });
+            // Arrange - create the controller
+            AdminController target = new AdminController(mock.Object);
+            // Act - delete the product
+            target.Delete(prod.ProductID);
+            // Assert - ensure that the repository delete method was
+            // called with the correct Product
+            mock.Verify(m => m.DeleteProduct(prod.ProductID));
+
+        }
     }
 }

@@ -45,5 +45,22 @@ namespace SportsStore.WebUI.Controllers
             // there is something wrong with the data values
             return View(product);
         }
+
+        public ViewResult Create() {
+            return View("Edit", new Product());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int productId)
+        {           
+            var deletedProduct = _productRepository.DeleteProduct(productId);
+
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletedProduct.Name);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
