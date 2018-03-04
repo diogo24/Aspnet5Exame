@@ -28,7 +28,7 @@ namespace SportsStore.UnitTests
             Cart cart = new Cart();
 
             // Arrange - create the controller            
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
 
             // Act
             target.AddToCart(cart, 1, null);
@@ -60,7 +60,7 @@ namespace SportsStore.UnitTests
             cart.AddItem(p2, 1);
 
             // Arrange - create the controller            
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
 
             // Act
             target.RemoveFromCart(cart, 2, null);
@@ -84,7 +84,7 @@ namespace SportsStore.UnitTests
             Cart cart = new Cart();
 
             // Arrange - create the controller            
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
 
             // Act
             var result = target.AddToCart(cart, 1, "myUrl");
@@ -101,7 +101,7 @@ namespace SportsStore.UnitTests
             Cart cart = new Cart();
 
             // Arrange - create the controller            
-            CartController target = new CartController(null);
+            CartController target = new CartController(null, null);
 
             // Act
             var result = (CartIndexViewModel)target.Index(cart, "myUrl").ViewData.Model;
