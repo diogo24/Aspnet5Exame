@@ -29,10 +29,12 @@ namespace SportsStore.Domain.Concrete
                 var entity = _context.Products.Find(product.ProductID);
                 if (entity != null) {
 
-                    entity.Name        = product.Name;
-                    entity.Description = product.Description;
-                    entity.Price       = product.Price;
-                    entity.Category    = product.Category;
+                    entity.Name          = product.Name;
+                    entity.Description   = product.Description;
+                    entity.Price         = product.Price;
+                    entity.Category      = product.Category;
+                    entity.ImageMimeType = product.ImageMimeType;
+                    entity.ImageData     = product.ImageData;
                 }
 
             }

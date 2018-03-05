@@ -71,5 +71,17 @@ namespace SportsStore.WebUI.Controllers
                 _productsRepository.Products :
                 _productsRepository.Products.Where(p => p.Category == category);
         }
+        
+        public FileContentResult GetImage(int productId)
+        {
+            var product = _productsRepository.Products.FirstOrDefault(p => p.ProductID == productId);
+
+            if(product == null)
+            {
+                return null;
+            }
+
+            return File(product.ImageData, product.ImageMimeType);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace SportsStore.Domain.Entities
@@ -21,5 +22,11 @@ namespace SportsStore.Domain.Entities
 
         [Required(ErrorMessage = "Please specify a category")]
         public string Category { get; set; }
+
+        [Column(TypeName = "VARBINARY(MAX)")]
+        public byte[] ImageData { get; set; }
+
+        [StringLength(50)]
+        public string ImageMimeType { get; set; }
     }
 }
