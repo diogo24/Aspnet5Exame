@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Domain", "SportsStore.Domain\SportsStore.Domain.csproj", "{EEE4493E-347A-4D5D-976A-C26F047C9ED8}"
 EndProject
@@ -11,18 +11,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.UnitTests", "Sp
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Azure|Any CPU = Azure|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEE4493E-347A-4D5D-976A-C26F047C9ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7E7A278-566B-483C-B7FB-E8828514D9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68B17CC-DBFD-4DC3-9F9F-220EC304938A}.Azure|Any CPU.ActiveCfg = Azure|Any CPU
+		{B68B17CC-DBFD-4DC3-9F9F-220EC304938A}.Azure|Any CPU.Build.0 = Azure|Any CPU
 		{B68B17CC-DBFD-4DC3-9F9F-220EC304938A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B68B17CC-DBFD-4DC3-9F9F-220EC304938A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B68B17CC-DBFD-4DC3-9F9F-220EC304938A}.Release|Any CPU.ActiveCfg = Release|Any CPU
