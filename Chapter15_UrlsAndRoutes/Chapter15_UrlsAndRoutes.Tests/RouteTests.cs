@@ -90,20 +90,69 @@ namespace Chapter15_UrlsAndRoutes.Tests
         //    TestRouteFail("~/Admin/Index/Segment");
         //}
 
+        //[TestMethod]
+        //public void TestIncomingRoutes_Example4()
+        //{
+        //    // check for the URL that is hoped for
+        //    TestRouteMatch("~/Admin/Index", "Admin", "Index");
+        //    // check that the values are being obtained from the segments
+        //    TestRouteMatch("~/one/Two", "one", "two");
+
+        //    TestRouteMatch("~/Admin", "Admin", "Index");
+        //    TestRouteMatch("~/", "Home", "Index");
+
+        //    // ensure that too many or too few segments fails to match
+
+        //    TestRouteFail("~/Admin/Index/Segment");
+        //}
+
+        //[TestMethod]
+        //public void TestIncomingRoutes_Example7()
+        //{
+        //    // check for the URL that is hoped for
+        //    TestRouteMatch("~/Admin/Index", "Admin", "Index");
+        //    // check that the values are being obtained from the segments
+        //    TestRouteMatch("~/one/Two", "one", "two");
+
+        //    TestRouteMatch("~/Admin", "Admin", "Index");
+        //    TestRouteMatch("~/", "Home", "Index");
+
+        //    TestRouteMatch("~/Shop/Index", "Home", "Index");
+
+        //    // ensure that too many or too few segments fails to match
+
+        //    TestRouteFail("~/Admin/Index/Segment");
+        //}
+
+        //[TestMethod]
+        //public void TestIncomingRoutes_Example9()
+        //{
+        //    TestRouteMatch("~/", "Home", "Index", new { id = "DefaultId" });
+        //    TestRouteMatch("~/Customer", "Customer", "index", new { id = "DefaultId" });
+        //    TestRouteMatch("~/Customer/List", "Customer", "List", new { id = "DefaultId" });
+        //    TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "All" });
+        //    TestRouteFail("~/Customer/List/All/Delete");
+        //}
+
+        //[TestMethod]
+        //public void TestIncomingRoutes_Example10()
+        //{
+        //    TestRouteMatch("~/", "Home", "Index");
+        //    TestRouteMatch("~/Customer", "Customer", "index");
+        //    TestRouteMatch("~/Customer/List", "Customer", "List");
+        //    TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "All" });
+        //    TestRouteFail("~/Customer/List/All/Delete");
+        //}
+
         [TestMethod]
-        public void TestIncomingRoutes_Example4()
+        public void TestIncomingRoutes_Example11()
         {
-            // check for the URL that is hoped for
-            TestRouteMatch("~/Admin/Index", "Admin", "Index");
-            // check that the values are being obtained from the segments
-            TestRouteMatch("~/one/Two", "one", "two");
-
-            TestRouteMatch("~/Admin", "Admin", "Index");
             TestRouteMatch("~/", "Home", "Index");
-
-            // ensure that too many or too few segments fails to match
-
-            TestRouteFail("~/Admin/Index/Segment");
+            TestRouteMatch("~/Customer", "Customer", "Index");
+            TestRouteMatch("~/Customer/List", "Customer", "List");
+            TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "All" });
+            TestRouteMatch("~/Customer/List/All/Delete", "Customer", "List", new { id = "All", catchall = "Delete" });
+            TestRouteMatch("~/Customer/List/All/Delete/Perm", "Customer", "List", new { id = "All", catchall = "Delete/Perm" });
         }
     }
 }
