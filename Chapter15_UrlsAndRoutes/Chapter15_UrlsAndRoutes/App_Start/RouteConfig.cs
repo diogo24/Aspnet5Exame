@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Chapter15_UrlsAndRoutes.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Routing.Constraints;
 using System.Web.Routing;
 
 namespace Chapter15_UrlsAndRoutes
@@ -100,18 +102,69 @@ namespace Chapter15_UrlsAndRoutes
             //    },
             //    new[] { "Chapter15_UrlsAndRoutes.Controllers" });
 
-            // Example 14
-            Route myRoute = routes.MapRoute("AddContollerRoute",
-                "Home/{action}/{id}/{*catchall}",
+            //// Example 14
+            //Route myRoute = routes.MapRoute("AddContollerRoute",
+            //    "Home/{action}/{id}/{*catchall}",
+            //    new
+            //    {
+            //        controller = "Home",
+            //        action     = "Index",
+            //        id         = UrlParameter.Optional
+            //    },
+            //    new[] { "Chapter15_UrlsAndRoutes.AdditionalControllers" });
+            //myRoute.DataTokens["UseNamespaceFallback"] = false;
+
+            //// Example 15
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new { controller = "^H.*" },
+            //    new[] { "Chapter15_UrlsAndRoutes.Controllers" });
+
+            //// Example 16
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new { controller = "^H.*", action = "^Index$|^About$" },
+            //    new[] { "Chapter15_UrlsAndRoutes.Controllers" });
+
+            //// Example 17
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new { controller = "^H.*", action = "Index|About",
+            //        httpMethod = new HttpMethodConstraint("GET")},
+            //    new[] { "Chapter15_UrlsAndRoutes.Controllers" });
+
+            //// Example 18
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new
+            //    {
+            //        controller = "^H.*",
+            //        action = "Index|About",
+            //        httpMethod = new HttpMethodConstraint("GET"),
+            //        id = new RangeRouteConstraint(10, 20)
+            //    },
+            //    new[] { "Chapter15_UrlsAndRoutes.Controllers" });
+
+            // Example 20
+            routes.MapRoute("FirefoxRoute", "{*catchall}",
+                 new { controller = "Home", action = "Index" },
+                 new { customConstraint = new UserAgentConstraint("Firefox") },
+                 new[] { "Chapter15_UrlsAndRoutes.AdditionalControllers" }
+                );
+
+            // Example 19
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new
                 {
-                    controller = "Home",
-                    action     = "Index",
-                    id         = UrlParameter.Optional
+                    controller = "^H.*",
+                    httpMethod = new HttpMethodConstraint("GET"),
+                    id         = new CompoundRouteConstraint(new IRouteConstraint[] {
+                        new AlphaRouteConstraint(),
+                        new MinLengthRouteConstraint(6)
+                    })
                 },
-                new[] { "Chapter15_UrlsAndRoutes.AdditionalControllers" });
-            myRoute.DataTokens["UseNamespaceFallback"] = false;
-
+                new[] { "Chapter15_UrlsAndRoutes.Controllers" });
         }
     }
 }
