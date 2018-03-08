@@ -7,7 +7,7 @@ using Moq;
 namespace Chapter15_UrlsAndRoutes.Tests
 {
     [TestClass]
-    public class RouteTests
+    public class RouteTests_Chapter14
     {
         private HttpContextBase CreateHttpContext(string targetUrl = null, string httpMethod = "GET") {
             // create the mock request
@@ -155,23 +155,23 @@ namespace Chapter15_UrlsAndRoutes.Tests
         //    TestRouteMatch("~/Customer/List/All/Delete/Perm", "Customer", "List", new { id = "All", catchall = "Delete/Perm" });
         //}
 
-        [TestMethod]
-        public void TestIncomingRoutes_Example17()
-        {
-            TestRouteMatch("~/", "Home", "Index");
-            TestRouteMatch("~/Home", "Home", "Index");
-            TestRouteMatch("~/Home/Index", "Home", "Index");
-            TestRouteMatch("~/Home/About", "Home", "About");
-            TestRouteMatch("~/Home/About/MyId", "Home", "About", new { id = "MyId" });
-            TestRouteMatch("~/Home/About/MyId/More/Segments", "Home", "About",
-            new
-            {
-                id = "MyId",
-                catchall = "More/Segments"
-            });
-            TestRouteFail("~/Home/OtherAction");
-            TestRouteFail("~/Account/Index");
-            TestRouteFail("~/Account/About");
-        }
+        //[TestMethod]
+        //public void TestIncomingRoutes_Example17()
+        //{
+        //    TestRouteMatch("~/", "Home", "Index");
+        //    TestRouteMatch("~/Home", "Home", "Index");
+        //    TestRouteMatch("~/Home/Index", "Home", "Index");
+        //    TestRouteMatch("~/Home/About", "Home", "About");
+        //    TestRouteMatch("~/Home/About/MyId", "Home", "About", new { id = "MyId" });
+        //    TestRouteMatch("~/Home/About/MyId/More/Segments", "Home", "About",
+        //    new
+        //    {
+        //        id = "MyId",
+        //        catchall = "More/Segments"
+        //    });
+        //    TestRouteFail("~/Home/OtherAction");
+        //    TestRouteFail("~/Account/Index");
+        //    TestRouteFail("~/Account/About");
+        //}
     }
 }
