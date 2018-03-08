@@ -189,13 +189,21 @@ namespace Chapter15_UrlsAndRoutes
         {
             routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
-            new
-            {
-                controller = "Home",
-                action     = "Index",
-                id         = UrlParameter.Optional
-            });
+            //// Version 1
+            //routes.MapRoute("NewRoute", "App/Do{Action}", new { controller = "Home" });
+
+            //// Version 1/2
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
+            //new
+            //{
+            //    controller = "Home",
+            //    action     = "Index",
+            //    id         = UrlParameter.Optional
+            //});
+
+            //version 3
+            routes.MapRoute("MyRoute", "{controler}/{action}");
+            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
         }
 
         #endregion 

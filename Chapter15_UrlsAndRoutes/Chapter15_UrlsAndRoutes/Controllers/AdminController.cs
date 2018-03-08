@@ -10,7 +10,7 @@ namespace Chapter15_UrlsAndRoutes.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        [Route("~/List")]
+        
         public ActionResult Index()
         {
             ViewBag.Controller = "Admin";
@@ -18,7 +18,7 @@ namespace Chapter15_UrlsAndRoutes.Controllers
             return View("ActionName");
         }
 
-        [Route("Add/{user}/{id:int}")]
+        [Route("Add/{user}/{id:int}", Name = "AddRoute")]
         public string Create(string user, int id)
         {
             return string.Format("User: {0}, ID: {1}", user, id);
@@ -31,6 +31,7 @@ namespace Chapter15_UrlsAndRoutes.Controllers
             user, password);
         }
 
+        [Route("~/List")]
         public ActionResult About()
         {
             ViewBag.Controller = "Admin";

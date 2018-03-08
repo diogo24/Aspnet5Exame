@@ -10,5 +10,29 @@
 <body>
     <div>The controller is: @ViewBag.Controller</div>
     <div>The action is: @ViewBag.Action</div>
+    <div>
+        @Html.ActionLink("This is an outgoing URl", "CustomVariable")
+    </div>
+    <div>
+        @Html.ActionLink("This targets another controller", "Index", "Admin")
+    </div>
+    <div>
+        @Html.ActionLink("This targets another controller", "Index", "Customer")
+    </div>
+    <div>
+        @Html.ActionLink("This is an outgoing URL", "CustomVariableParameters", new { id = "Hello"} )
+    </div>
+    <div>
+        @Html.ActionLink("This is an outgoing URL with css", "Index", "Home", null, new { @class = "myCSSClass", id = "MyAnchorID" })
+    </div>
+    <div>
+        @Html.ActionLink("This is an outgoing URL fully qualified", "Index", "Home", "https",
+       "localhost:29083", " myFragmentName", 
+       new { id = "MyId"}, new { id = "MyAnchorID", @class = "myCSSClass" })
+    </div>
+    <div>
+        This is a URL:
+        @Url.Action("Index", "Home", new { id = "MyId" })
+    </div>
 </body>
 </html>
