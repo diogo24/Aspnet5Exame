@@ -61,5 +61,20 @@ namespace Chapter17_ControllersAndActions.Controllers
 
             return View();
         }
+
+        public HttpStatusCodeResult StatusCode()
+        {
+            return new HttpStatusCodeResult(404, "URL cannot be serviced");
+        }
+
+        public HttpStatusCodeResult StatusCode_NotFound()
+        {
+            return HttpNotFound();
+        }
+
+        public HttpStatusCodeResult StatusCode_Unauthorized()
+        {
+            return new HttpUnauthorizedResult();
+        }
     }
 }

@@ -81,5 +81,18 @@ namespace Chapter17_ControllersAndActions.Tests
             Assert.AreEqual("Index", result.RouteValues["action"]);
             Assert.AreEqual("MyID", result.RouteValues["ID"]);
         }
+
+        [TestMethod]
+        public void ControllerTest_()
+        {
+            // Arrange  - create the controller
+            var controller = new ExampleController();
+
+            // Act  - call the action method
+            HttpStatusCodeResult result = controller.StatusCode_Unauthorized();
+
+            // Assert
+            Assert.AreEqual(401, result.StatusCode);
+        }
     }
 }
