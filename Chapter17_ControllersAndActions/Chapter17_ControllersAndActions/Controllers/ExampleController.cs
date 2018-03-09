@@ -11,7 +11,55 @@ namespace Chapter17_ControllersAndActions.Controllers
         // GET: Example
         public ViewResult Index()
         {
+            ViewBag.Message = TempData["Message"];
+            ViewBag.Date = TempData["Date"];
             return View("Homepage");
+        }
+
+        public ViewResult Index_Model()
+        {
+            var date = DateTime.Now;
+            return View(date);
+        }
+
+        public ViewResult Index_ViewBag() {
+            ViewBag.Message = "Hello";
+            ViewBag.Date    = DateTime.Now;
+
+            return View();
+        }
+
+        public RedirectResult Redirect() {
+            return Redirect("/Example/Index");
+            // return RedirectPermanent("/Example/Index");
+        }
+
+        public RedirectToRouteResult Redirect_Route()
+        {
+            return RedirectToRoute(new { controller = "Example", action = "Index", ID = "MyID" });
+        }
+
+        public RedirectToRouteResult Redirect_Action()
+        {
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToRouteResult RedirectToRoute()
+        {
+            TempData["Message"] = "Hello";
+            TempData["Date"] = DateTime.Now;
+            return RedirectToAction("Index_TempData");
+        }
+
+        public ViewResult Index_TempData()
+        {
+            DateTime time = (DateTime)TempData.Peek("Date");
+            TempData.Keep("Date");
+
+            ViewBag.Message = TempData["Message"];
+            ViewBag.Date = TempData["Date"];
+
+            return View();
         }
     }
 }

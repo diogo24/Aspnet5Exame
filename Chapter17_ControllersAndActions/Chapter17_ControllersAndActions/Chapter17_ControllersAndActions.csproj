@@ -107,6 +107,9 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Derived\MyView.cshtml" />
+    <Content Include="Views\Example\Index_Model.cshtml" />
+    <Content Include="Views\Example\Index_ViewBag.cshtml" />
+    <Content Include="Views\Example\Index_TempData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,7 +120,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Example\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
