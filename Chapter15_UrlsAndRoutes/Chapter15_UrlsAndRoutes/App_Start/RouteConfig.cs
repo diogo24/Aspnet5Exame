@@ -187,42 +187,63 @@ namespace Chapter15_UrlsAndRoutes
 
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //routes.RouteExistingFiles = true;
+            ////routes.RouteExistingFiles = true;
 
-            routes.MapMvcAttributeRoutes();
+            //routes.MapMvcAttributeRoutes();
 
-            //// Version 1
-            //routes.MapRoute("NewRoute", "App/Do{Action}", new { controller = "Home" });
+            ////// Version 1
+            ////routes.MapRoute("NewRoute", "App/Do{Action}", new { controller = "Home" });
 
-            //// Version 1/2
+            ////// Version 1/2
+            ////routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
+            ////new
+            ////{
+            ////    controller = "Home",
+            ////    action     = "Index",
+            ////    id         = UrlParameter.Optional
+            ////});
+
+            //// Version 5
+            //routes.Add(new Route("SayHello", new CustomRouteHandler()));
+
+            ////version 4
+            //routes.Add(new LegacyRoute(
+            //     "~/articles/Windows_3.1_Overview.html",
+            //     "~/old/.NET_1.0_Class_Library",
+            //     "~/old/bananas"));
+
+            //////version 3
+            ////routes.MapRoute("MyRoute", "{controler}/{action}");
+            ////routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+
             //routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
             //new
             //{
             //    controller = "Home",
-            //    action     = "Index",
-            //    id         = UrlParameter.Optional
+            //    action = "Index",
+            //    id = UrlParameter.Optional
             //});
 
-            // Version 5
+            routes.RouteExistingFiles = true;
+
+
+
+            //routes.MapRoute("DiskFile", "Content/StaticContent.html",
+            //     new
+            //     {
+            //         controller = "Customer",
+            //         action = "List",
+            //     });
+
+            routes.IgnoreRoute("Content/{filename}.html");
+
+            routes.MapMvcAttributeRoutes();
             routes.Add(new Route("SayHello", new CustomRouteHandler()));
-
-            //version 4
             routes.Add(new LegacyRoute(
-                 "~/articles/Windows_3.1_Overview.html",
-                 "~/old/.NET_1.0_Class_Library",
-                 "~/old/bananas"));
-
-            ////version 3
-            //routes.MapRoute("MyRoute", "{controler}/{action}");
-            //routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
-
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
-            new
-            {
-                controller = "Home",
-                action = "Index",
-                id = UrlParameter.Optional
-            });
+            "~/articles/Windows_3.1_Overview.html",
+            "~/old/.NET_1.0_Class_Library"));
+            routes.MapRoute("MyRoute", "{controller}/{action}", null, new[] { "Chapter15_UrlsAndRoutes.Controllers" });
+            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" }, new[] { "Chapter15_UrlsAndRoutes.Controllers" });
         }
 
         #endregion 

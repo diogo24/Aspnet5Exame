@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Chapter15_UrlsAndRoutes.Controllers
 {
+    [RouteArea("Services")]
     [RoutePrefix("Admin")]
     public class AdminController : Controller
     {
