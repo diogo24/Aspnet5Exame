@@ -187,7 +187,7 @@ namespace Chapter15_UrlsAndRoutes
 
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.RouteExistingFiles = true;
+            //routes.RouteExistingFiles = true;
 
             routes.MapMvcAttributeRoutes();
 
@@ -203,15 +203,26 @@ namespace Chapter15_UrlsAndRoutes
             //    id         = UrlParameter.Optional
             //});
 
+            // Version 5
+            routes.Add(new Route("SayHello", new CustomRouteHandler()));
+
             //version 4
             routes.Add(new LegacyRoute(
                  "~/articles/Windows_3.1_Overview.html",
                  "~/old/.NET_1.0_Class_Library",
                  "~/old/bananas"));
 
-            //version 3
-            routes.MapRoute("MyRoute", "{controler}/{action}");
-            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+            ////version 3
+            //routes.MapRoute("MyRoute", "{controler}/{action}");
+            //routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
+            new
+            {
+                controller = "Home",
+                action = "Index",
+                id = UrlParameter.Optional
+            });
         }
 
         #endregion 
