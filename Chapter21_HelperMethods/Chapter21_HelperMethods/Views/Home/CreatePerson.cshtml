@@ -1,4 +1,5 @@
 ﻿@model Chapter21_HelperMethods.Models.Person
+@using Chapter21_HelperMethods.Models
 @{
     ViewBag.Title = "CreatePerson";
     Layout = "/Views/Shared/_Layout.cshtml";
@@ -37,16 +38,28 @@
 {
     <div class="dataElem">
         <label>PersonId</label>
-        <input name="personId" value="@Model.PersonId" />
+        @*@Html.TextBox("personId", @Model.PersonId)*@
+        @*@Html.TextBox("PersonId")*@        @Html.TextBoxFor(m => m.PersonId)
     </div>
     <div class="dataElem">
         <label>First Name</label>
-        <input name="FirstName" value="@Model.FirstName" />
+        @*@Html.TextBox("firstName", @Model.FirstName)*@
+        @*@Html.TextBox("firstName")*@
+        @Html.TextBoxFor(m => m.FirstName)
+
     </div>
     <div class="dataElem">
         <label>Last Name</label>
-        <input name="lastName" value="@Model.LastName" />
+        @*@Html.TextBox("lastName", @Model.LastName)*@
+        @*@Html.TextBox("lastName")*@
+        @Html.TextBoxFor(m => m.LastName)
+
     </div>
+    <div class="dataElem">
+        <label>Role</label>
+        @Html.DropDownListFor(r => r.Role, new SelectList(Enum.GetNames(typeof(Role))))
+    </div>
+
     <input type="submit" value="Submit" />
 }
 
