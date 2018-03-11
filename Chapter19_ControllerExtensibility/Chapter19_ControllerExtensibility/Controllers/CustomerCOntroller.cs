@@ -18,6 +18,7 @@ namespace Chapter19_ControllerExtensibility.Controllers
             });
         }
 
+        [ActionName("Enumerate")]
         public ViewResult List()
         {
             return View("Result", new Result
@@ -25,6 +26,12 @@ namespace Chapter19_ControllerExtensibility.Controllers
                 ControllerName = "Customer",
                 ActionName = "List"
             });
+        }
+
+        [NonAction]
+        public ActionResult MyAction()
+        {
+            return View();
         }
     }
 }
