@@ -1,7 +1,26 @@
 ﻿@model string
+@*@using Chapter21_HelperMethods.Infrastructure*@
 @{
     Layout = null;
 }
+@*@helper ListArrayItems(string[] items)
+    {
+        foreach (var str in items)
+        {
+            <b>@str </b>
+        }
+}*@
+
+@helper ListArrayItems(string[] items)
+    {
+        <ul>
+            @foreach (string str in items)
+            {
+                <li>@str</li>
+            }
+        </ul>
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +45,25 @@
     <div>
         Here is the message:
         <p>@Model</p>
+    </div>
+    <div>
+        Here are the fruits: @ListArrayItems(ViewBag.Fruits)
+    </div>
+
+    <div>
+        Here are the cities: @Html.ListArrayItems((string[])ViewBag.Cities)
+    </div>
+
+    <div>
+        <p>This is the content from the view:</p>
+        <div style="border: thin solid black; padding: 10px">
+            Here is the message:
+            <p>@Model</p>
+        </div>
+        <p>This is the content from the helper method:</p>
+        <div style="border: thin solid black; padding: 10px">
+            @Html.DisplayMessage(Model)
+        </div>
     </div>
 </body>
 </html>
