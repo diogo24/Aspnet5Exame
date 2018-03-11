@@ -20,5 +20,31 @@ namespace Chapter18_Filters.Controllers
         {
             return "This is the Index action on the Home controller";
         }
+
+        [RangeException]
+        public string RangeTest(int id)
+        {
+            if (id > 100)
+            {
+                return string.Format("The id value is : {0}", id);
+            }
+            else {
+                throw new ArgumentOutOfRangeException("id", id, "");
+            }
+        }
+
+
+        [HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "RangeError_BuiltIn")]
+        public string RangeTest_BuiltInExceptionFilter(int id)
+        {
+            if (id > 100)
+            {
+                return string.Format("The id value is : {0}", id);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("id", id, "");
+            }
+        }
     }
 }
