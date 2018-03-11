@@ -36,7 +36,18 @@ namespace Chapter19_ControllerExtensibility.Infrastructure
 
         public SessionStateBehavior GetControllerSessionBehavior(RequestContext requestContext, string controllerName)
         {
-            return SessionStateBehavior.Default;
+
+            switch (controllerName)
+            {
+                case "Home":
+                    return SessionStateBehavior.ReadOnly;
+                case "Product":
+                    return SessionStateBehavior.Required;
+                default:
+                    return SessionStateBehavior.Default;
+            }
+
+            //return SessionStateBehavior.Default;
         }
 
         public void ReleaseController(IController controller)

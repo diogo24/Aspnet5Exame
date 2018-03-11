@@ -96,6 +96,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActionInvokerController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\FastController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -122,6 +123,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ActionInvoker\" />
+    <Folder Include="Views\Fast\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
