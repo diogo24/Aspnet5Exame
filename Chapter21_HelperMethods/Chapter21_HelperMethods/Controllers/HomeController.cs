@@ -24,7 +24,7 @@ namespace Chapter21_HelperMethods.Controllers
         [HttpPost]
         public ActionResult CreatePerson(Person viewModel)
         {
-            return View(viewModel);
+            return View("DisplayPerson", viewModel);
         }
     }
 }

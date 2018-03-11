@@ -1,65 +1,15 @@
 ﻿@model Chapter21_HelperMethods.Models.Person
-@using Chapter21_HelperMethods.Models
 @{
     ViewBag.Title = "CreatePerson";
     Layout = "/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(false);
 }
-<h2>CreatePerson</h2>
-@*
-    <form action="/Home/CreatePerson" method="post">
-    @{Html.BeginForm();}
-    @using (Html.BeginForm())
-    {
-    using (Html.BeginForm("CreatePerson", "Home",
-         new { id = "MyIdValue" }, FormMethod.Post,
-         new { @class = "personClass", data_formType = "person" }))
-    {
-
-        <div class="dataElem">
-            <label>PersonId</label>
-            <input name="personId" value="@Model.PersonId" />
-        </div>
-        <div class="dataElem">
-            <label>First Name</label>
-            <input name="FirstName" value="@Model.FirstName" />
-        </div>
-        <div class="dataElem">
-            <label>Last Name</label>
-            <input name="lastName" value="@Model.LastName" />
-        </div>
-        <input type="submit" value="Submit" />
-    }
-    }
-    @{Html.EndForm();}
-    </form>
-*@
-
-@using (Html.BeginRouteForm("FormRoute", null, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
+<h2>CreatePerson: @Html.LabelForModel()</h2>
+@using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post,
+ new { @class = "personClass", data_formType = "person" }))
 {
-    <div class="dataElem">
-        <label>PersonId</label>
-        @*@Html.TextBox("personId", @Model.PersonId)*@
-        @*@Html.TextBox("PersonId")*@        @Html.TextBoxFor(m => m.PersonId)
-    </div>
-    <div class="dataElem">
-        <label>First Name</label>
-        @*@Html.TextBox("firstName", @Model.FirstName)*@
-        @*@Html.TextBox("firstName")*@
-        @Html.TextBoxFor(m => m.FirstName)
 
-    </div>
-    <div class="dataElem">
-        <label>Last Name</label>
-        @*@Html.TextBox("lastName", @Model.LastName)*@
-        @*@Html.TextBox("lastName")*@
-        @Html.TextBoxFor(m => m.LastName)
-
-    </div>
-    <div class="dataElem">
-        <label>Role</label>
-        @Html.DropDownListFor(r => r.Role, new SelectList(Enum.GetNames(typeof(Role))))
-    </div>
+    @Html.EditorForModel()
 
     <input type="submit" value="Submit" />
 }
-
