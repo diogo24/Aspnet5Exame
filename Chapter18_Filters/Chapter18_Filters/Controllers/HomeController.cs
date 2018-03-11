@@ -1,6 +1,7 @@
 ﻿using Chapter18_Filters.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +10,8 @@ namespace Chapter18_Filters.Controllers
 {
     public class HomeController : Controller
     {
+        private Stopwatch timer;
+
         [CustomAuth(true)]
         public string Index()
         {
@@ -59,6 +62,25 @@ namespace Chapter18_Filters.Controllers
         public string ActionFilterTest_Timer()
         {
             return "This is the FilterTest action";
+        }
+
+
+        public string FilterTest()
+        {
+            return "This is the FilterTest action";
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            timer = Stopwatch.StartNew();
+        }
+
+        protected override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            timer.Stop();
+            filterContext.HttpContext.Response.Write(
+                string.Format("<div>Total Controller elapsed time: {0}</div>",
+                timer.Elapsed.TotalSeconds));
         }
     }
 }
