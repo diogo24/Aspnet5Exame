@@ -29,5 +29,8 @@ namespace Chapter21_HelperMethods.Models
         [Display(Name = "Approved")]
         public bool IsApproved { get; set; }
 
+        [UIHint("Enum")]
+        public Role Role { get; set; }
+
     }
 }
