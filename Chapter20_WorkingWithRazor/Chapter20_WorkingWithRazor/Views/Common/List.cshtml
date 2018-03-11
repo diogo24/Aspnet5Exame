@@ -7,4 +7,8 @@
 @Html.Partial("MyPartial")
 
 
-@Html.Partial("MyStronglyTypedPartial", new [] { "Apple", "Orange", "Pear" })
+@Html.Partial("MyStronglyTypedPartial", new[] { "Apple", "Orange", "Pear" })
+
+@Html.Action("Time")
+
+@Html.Action("Time_Params", new { time = DateTime.Now })

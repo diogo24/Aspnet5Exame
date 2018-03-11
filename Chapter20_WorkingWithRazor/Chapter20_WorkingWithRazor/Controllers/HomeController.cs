@@ -18,5 +18,16 @@ namespace Chapter20_WorkingWithRazor.Controllers
         {
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Time() {
+            return PartialView(DateTime.Now);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Time_Params(DateTime time)
+        {
+            return PartialView("Time", time);
+        }
     }
 }
