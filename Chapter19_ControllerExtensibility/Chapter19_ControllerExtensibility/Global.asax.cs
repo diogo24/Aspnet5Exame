@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chapter19_ControllerExtensibility.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,10 @@ namespace Chapter19_ControllerExtensibility
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
+            ControllerBuilder.Current.DefaultNamespaces.Add("MyControllerNamespace");
+            ControllerBuilder.Current.DefaultNamespaces.Add("MyProject.*");
         }
     }
 }
