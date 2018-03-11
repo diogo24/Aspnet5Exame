@@ -46,5 +46,19 @@ namespace Chapter18_Filters.Controllers
                 throw new ArgumentOutOfRangeException("id", id, "");
             }
         }
+
+        [CustomAction]
+        public string ActionFilterTest()
+        {
+            return "This is the FilterTest action";
+        }
+
+        [ProfileAction]
+        [ProfileResult]
+        [ProfileAll]
+        public string ActionFilterTest_Timer()
+        {
+            return "This is the FilterTest action";
+        }
     }
 }
