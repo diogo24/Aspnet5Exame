@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chapter21_HelperMethods.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,16 @@ namespace Chapter21_HelperMethods.Controllers
             ViewBag.Cities = new string[] { "New York", "London", "Paris" };
             string message = "This is an HTML element: <input>";
             return View((object)message);
+        }
+
+        public ActionResult CreatePerson() {
+            return View(new Person());
+        }
+
+        [HttpPost]
+        public ActionResult CreatePerson(Person viewModel)
+        {
+            return View(viewModel);
         }
     }
 }
