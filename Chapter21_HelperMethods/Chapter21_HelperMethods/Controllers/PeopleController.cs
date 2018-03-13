@@ -41,21 +41,56 @@ namespace Chapter21_HelperMethods.Controllers
         //    }
         //}
 
-        public PartialViewResult GetPeopleData(string selectedRole = "All")
+        //public PartialViewResult GetPeopleData(string selectedRole = "All")
+        //{
+        //    //if (selectedRole != "All")
+        //    //{
+        //    //    Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
+        //    //    var list = _personData.Where(p => p.Role == selected);
+        //    //    return PartialView(list);
+        //    //}
+
+        //    //return PartialView(_personData);
+        //    return PartialView(GetData(selectedRole));
+        //}
+
+        public ActionResult GetPeople(string selectedRole = "All")
+        {
+            return View((object)selectedRole);
+        }
+
+        private IEnumerable<Person> GetData(string selectedRole)
         {
             if (selectedRole != "All")
             {
                 Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
                 var list = _personData.Where(p => p.Role == selected);
-                return PartialView(list);
+                return list;
             }
 
-            return PartialView(_personData);
+            return _personData;
         }
 
-        public ActionResult GetPeople(string selectedRole = "All")
+        //public JsonResult GetPeopleDataJson(string selectedRole = "All")
+        //{
+        //    return Json(GetData(selectedRole).Select(p => new { FirstName = p.FirstName, LastName = p.LastName, Role = Enum.GetName(typeof(Role), p.Role)}), JsonRequestBehavior.AllowGet);
+        //}
+
+        public ActionResult GetPeopleData(string selectedRole = "All")
         {
-            return View((object)selectedRole);
+            var data = GetData(selectedRole);
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(
+                    GetData(selectedRole)
+                    .Select(p => new { FirstName = p.FirstName, LastName = p.LastName, Role = Enum.GetName(typeof(Role), p.Role) })
+                    , JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return PartialView(data);
+            }
         }
     }
 }
