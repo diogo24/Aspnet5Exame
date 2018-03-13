@@ -2,15 +2,25 @@
 @model string
 @{
     ViewBag.Title = "GetPeople";
-    Layout = "/Views/Shared/_Layout.cshtml";
+    Layout        = "/Views/Shared/_Layout.cshtml";
 
     var targetClass = "tableBody";
-    AjaxOptions ajaxOptions = new AjaxOptions {
-        UpdateTargetId = targetClass
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId          = targetClass,
+        Url                     = Url.Action("GetPeopleData"),
+        LoadingElementId        = "loading",
+        LoadingElementDuration  = 5000,
+        Confirm                 = "Do you wish to request the new data?"
     };
 
 }
 <h2>Get People</h2>
+
+<div id="loading" class="load" style="display: none">
+    <p>Loading Data...</p>
+</div>
+
 <div id="peopleDataTableContainer">
     <table>
         <thead><tr><th>First</th><th>Last</th><th>Role</th></tr></thead>
@@ -21,7 +31,7 @@
    
 </div>
 
-@using (Ajax.BeginForm("GetPeopleData", ajaxOptions))
+@using (Ajax.BeginForm(ajaxOptions))
 {
     <div>
         @Html.DropDownList("selectedRole", new SelectList(
