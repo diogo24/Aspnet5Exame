@@ -21,24 +21,41 @@ namespace Chapter21_HelperMethods.Controllers
             return View();
         }
 
-        public ActionResult GetPeople()
-        {
-            return View(_personData);
-        }
+        //public ActionResult GetPeople()
+        //{
+        //    return View(_personData);
+        //}
 
-        [HttpPost]
-        public ActionResult GetPeople(string selectedRole)
+        //[HttpPost]
+        //public ActionResult GetPeople(string selectedRole)
+        //{
+        //    if (string.IsNullOrEmpty(selectedRole) || selectedRole == "All")
+        //    {
+        //        return View(_personData);
+        //    }
+        //    else
+        //    {
+        //        Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
+        //        var list = _personData.Where(p => p.Role == selected);
+        //        return View(list);
+        //    }
+        //}
+
+        public PartialViewResult GetPeopleData(string selectedRole = "All")
         {
-            if (string.IsNullOrEmpty(selectedRole) || selectedRole == "All")
-            {
-                return View(_personData);
-            }
-            else
+            if (selectedRole != "All")
             {
                 Role selected = (Role)Enum.Parse(typeof(Role), selectedRole);
                 var list = _personData.Where(p => p.Role == selected);
-                return View(list);
+                return PartialView(list);
             }
+
+            return PartialView(_personData);
+        }
+
+        public ActionResult GetPeople(string selectedRole = "All")
+        {
+            return View((object)selectedRole);
         }
     }
 }

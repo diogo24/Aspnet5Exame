@@ -1,0 +1,31 @@
+﻿@using Chapter21_HelperMethods.Models
+@model string
+@{
+    ViewBag.Title = "GetPeople";
+    Layout = "/Views/Shared/_Layout.cshtml";
+
+    var targetClass = "tableBody";
+    AjaxOptions ajaxOptions = new AjaxOptions {
+        UpdateTargetId = targetClass
+    };
+
+}
+<h2>Get People</h2>
+<div id="peopleDataTableContainer">
+    <table>
+        <thead><tr><th>First</th><th>Last</th><th>Role</th></tr></thead>
+        <tbody id="@targetClass">
+            @Html.Action("GetPeopleData", new { selectedRole = Model })
+        </tbody>
+    </table>
+   
+</div>
+
+@using (Ajax.BeginForm("GetPeopleData", ajaxOptions))
+{
+    <div>
+        @Html.DropDownList("selectedRole", new SelectList(
+            new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
+        <button type="submit">Submit</button>
+    </div>
+}
