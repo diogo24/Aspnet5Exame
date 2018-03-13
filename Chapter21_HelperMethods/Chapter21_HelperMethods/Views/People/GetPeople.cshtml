@@ -39,3 +39,33 @@
         <button type="submit">Submit</button>
     </div>
 }
+
+<div>
+    @foreach (var role in Enum.GetNames(typeof(Role)))
+    {
+        <div class="ajaxLink">
+            @*@Ajax.ActionLink(role, "GetPeopleData", new { selectedRole = role }, new AjaxOptions { UpdateTargetId = targetClass })*@
+            @Ajax.ActionLink(role, "GetPeople", new AjaxOptions { UpdateTargetId = targetClass, Url = Url.Action("GetPeopleData", new { selectedRole = role }),
+               OnBegin    = "OnBegin",
+               OnFailure  = "OnFailure",
+               OnComplete = "OnComplete",
+               OnSuccess  = "OnSuccess"
+           })
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function OnBegin() {
+        alert("This is the OnBegin Callback");
+    }
+    function OnSuccess(data) {
+        alert("This is the OnSuccessCallback: " + data);
+    }
+    function OnFailure(request, error) {
+        alert("This is the OnFailure Callback:" + error);
+    }
+    function OnComplete(request, status) {
+        alert("This is the OnComplete Callback: " + status);
+    }
+</script>
