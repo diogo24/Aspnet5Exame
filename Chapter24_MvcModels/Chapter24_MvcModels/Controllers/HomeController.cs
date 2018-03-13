@@ -50,9 +50,76 @@ namespace Chapter24_MvcModels.Controllers
             return View("Index", person);
         }
 
-        public ActionResult DisplaySummary([Bind(Prefix = nameof(Person.HomeAddress), Exclude = nameof(Address.Country))]AddressSummary addressSummary)
+        public ActionResult DisplaySummary([Bind(Prefix = nameof(Person.HomeAddress), Exclude = nameof(AddressSummary.Country))]AddressSummary addressSummary)
         {
             return View(addressSummary);
+        }
+
+        public ActionResult Names(string[] names)
+        {
+            names = names ?? new string[0];
+            return View(names);
+        }
+
+        public ActionResult Names_Collection(IList<string> names)
+        {
+            names = names ?? new List<string>();
+            return View(names);
+        }
+
+        public ActionResult Address(IList<AddressSummary> addresses)
+        {
+            addresses = addresses ?? new List<AddressSummary>();
+
+            return View(addresses);
+        }
+
+
+        //public ActionResult Address_ManuallyInvokingModelBinding()
+        //{
+        //    IList<AddressSummary> addresses = new List<AddressSummary>();
+
+        //    //UpdateModel(addresses);
+        //    UpdateModel(addresses, new FormValueProvider(ControllerContext));
+
+        //    return View(addresses);
+        //}
+
+        //public ActionResult Address_ManuallyInvokingModelBinding(FormCollection provider)
+        //{
+        //    IList<AddressSummary> addresses = new List<AddressSummary>();
+
+        //    //UpdateModel(addresses);
+        //    UpdateModel(addresses, provider);
+
+        //    return View(addresses);
+        //}
+
+        public ActionResult Address_ManuallyInvokingModelBinding(FormCollection formData)
+        {
+            IList<AddressSummary> addresses = new List<AddressSummary>();
+
+            //UpdateModel(addresses);
+            //try
+            //{
+            //    UpdateModel(addresses, formData);
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    //throw;
+            //    // provide feedback to user
+            //}
+
+            if (TryUpdateModel(addresses, formData))
+            {
+                // proceed as normal
+            }
+            else
+            {
+                // provide feedback to user
+            }
+
+            return View(addresses);
         }
     }
 }

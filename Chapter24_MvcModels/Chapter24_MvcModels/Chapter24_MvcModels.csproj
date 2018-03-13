@@ -103,6 +103,10 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\CreatePerson.cshtml" />
     <Content Include="Views\Home\DisplaySummary.cshtml" />
+    <Content Include="Views\Home\Names.cshtml" />
+    <Content Include="Views\Home\Names_Collection.cshtml" />
+    <Content Include="Views\Home\Address.cshtml" />
+    <Content Include="Views\Home\Address_ManuallyInvokingModelBinding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
