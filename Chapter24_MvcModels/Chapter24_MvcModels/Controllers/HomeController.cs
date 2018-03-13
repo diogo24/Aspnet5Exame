@@ -95,29 +95,39 @@ namespace Chapter24_MvcModels.Controllers
         //    return View(addresses);
         //}
 
-        public ActionResult Address_ManuallyInvokingModelBinding(FormCollection formData)
+        //public ActionResult Address_ManuallyInvokingModelBinding(FormCollection formData)
+        //{
+        //    IList<AddressSummary> addresses = new List<AddressSummary>();
+
+        //    //UpdateModel(addresses);
+        //    //try
+        //    //{
+        //    //    UpdateModel(addresses, formData);
+        //    //}
+        //    //catch (InvalidOperationException)
+        //    //{
+        //    //    //throw;
+        //    //    // provide feedback to user
+        //    //}
+
+        //    if (TryUpdateModel(addresses, formData))
+        //    {
+        //        // proceed as normal
+        //    }
+        //    else
+        //    {
+        //        // provide feedback to user
+        //    }
+
+        //    return View(addresses);
+        //}
+
+        public ActionResult Address_ManuallyInvokingModelBinding()
         {
             IList<AddressSummary> addresses = new List<AddressSummary>();
 
-            //UpdateModel(addresses);
-            //try
-            //{
-            //    UpdateModel(addresses, formData);
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    //throw;
-            //    // provide feedback to user
-            //}
-
-            if (TryUpdateModel(addresses, formData))
-            {
-                // proceed as normal
-            }
-            else
-            {
-                // provide feedback to user
-            }
+            UpdateModel(addresses);
+            //pdateModel(addresses, new FormValueProvider(ControllerContext));
 
             return View(addresses);
         }
