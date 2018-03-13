@@ -21,10 +21,38 @@ namespace Chapter24_MvcModels.Controllers
          };
 
         // GET: Home
-        public ActionResult Index(int id)
+        //public ActionResult Index(int id)
+        //{
+        //    Person person = _personData.Where(p => p.PersonId == id).First();
+        //    return View(person);
+        //}
+
+        //public ActionResult Index(int? id)
+        //{
+        //    Person person = _personData.Where(p => p.PersonId == id).First();
+        //    return View(person);
+        //}
+
+        public ActionResult Index(int id = 1)
         {
             Person person = _personData.Where(p => p.PersonId == id).First();
             return View(person);
+        }
+
+        public ActionResult CreatePerson()
+        {
+            return View(new Person());
+        }
+
+        [HttpPost]
+        public ActionResult CreatePerson(Person person)
+        {
+            return View("Index", person);
+        }
+
+        public ActionResult DisplaySummary([Bind(Prefix = nameof(Person.HomeAddress), Exclude = nameof(Address.Country))]AddressSummary addressSummary)
+        {
+            return View(addressSummary);
         }
     }
 }
