@@ -22,14 +22,24 @@ namespace Chapter27_WebServices.Controllers
             return _reservationRepository.Get(id);
         }
 
-        public Reservation PostReservation(Reservation reservation)
+        //public Reservation PostReservation(Reservation reservation)
+        //{
+        //    return _reservationRepository.Add(reservation);
+        //}
+        [HttpPost]
+        public Reservation CreateReservation(Reservation item)
         {
-            return _reservationRepository.Add(reservation);
+            return _reservationRepository.Add(item);
         }
 
-        public bool PutReservation(Reservation reservation)
+        //public bool PutReservation(Reservation reservation)
+        //{
+        //    return _reservationRepository.Update(reservation);
+        //}
+        [HttpPut]
+        public bool UpdateReservation(Reservation item)
         {
-            return _reservationRepository.Update(reservation);
+            return _reservationRepository.Update(item);
         }
 
         public void DeleteReservation(int id)
