@@ -30,10 +30,12 @@ namespace Chapter27_WebServices.Models
         {
             return data;
         }
+
         public Reservation Get(int id)
         {
             return data.Where(r => r.ReservationId == id).FirstOrDefault();
         }
+
         public Reservation Add(Reservation item)
         {
             item.ReservationId = data.Count + 1;
